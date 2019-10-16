@@ -165,7 +165,7 @@ jQuery(document).ready(function($){
             if(window.scrollY + 75 > $bodyColHeight){ 
                 $(rfi).css({
                     'position': 'absolute',
-                    'top': 200 + $('.body').height() - $(rfi).height() - $('.sidebar').height()
+                    'bottom': '0'
                 });
                 console.log("Body:" + $('.body').height() + "\n RFI: " + $(rfi).height() + "\n Sidebar: " + $('.sidebar').height());
             } else {

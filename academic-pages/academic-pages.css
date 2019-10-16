@@ -310,3 +310,5 @@
             width: auto!important;
         }
     }
+
+    .large-centered { position: relative; }
