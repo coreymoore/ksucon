@@ -74,9 +74,12 @@ p.introduction {
     right: -10%;
     background-size: cover;
     width: 100%;
-    height: 38px;
     line-height: 1.2em;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.2em 0;
+}
 .one-nurse-text {
     float: right;
     position: relative;
@@ -328,7 +331,20 @@ h3.social-header {
     .ctaFactoid .ctas a, .ctaFactoid.ctas a, .menucta .ctas a, .menucta.ctas a {
         font-size: 7vw;
     }
-    .ribbon-teaser-button-head { font-size: 5vw; }
+    .ribbon-teaser-button-head { font-size: 4.75vw; }
+    .ribbon-teaser-button-head a:after {
+        content: "\f0d7";
+        font-family: "Font Awesome 5 Free"; 
+        font-weight: 900;
+        padding-left: 0.5em;
+    }
+    .active-ribbon-toggle a:after {
+        content: "\f0d8";
+        font-family: "Font Awesome 5 Free"; 
+    }
+    #dean-message h2, .forging-future h2 { 
+        font-size: 1.953em;
+    }
 }
 /* Medium screens */
 @media only screen and (min-width: 40.063em) {
@@ -338,6 +354,10 @@ h3.social-header {
         max-width: 75vw;
         margin-top: 2.875rem;
     }
+    .ctaFactoid .ctas a, .ctaFactoid.ctas a, .menucta .ctas a, .menucta.ctas a {
+        font-size: 1.6vw;
+    }
+    .ribbon-teaser-button-head { font-size: 1.3em; }
 }
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
     .grid-sizer, .grid-item {
@@ -361,5 +381,14 @@ h3.social-header {
     p.introduction {
         font-size: 25px!important;
         line-height: 35px!important;
+    }
+    .ribbon-teaser-button-head a:after {
+        content: "";
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1024px) {
+    .ribbon-teaser-button-head a:after {
+        content: "";
     }
 }
