@@ -328,6 +328,7 @@ h3.social-header {
     .ctaFactoid .ctas a, .ctaFactoid.ctas a, .menucta .ctas a, .menucta.ctas a {
         font-size: 7vw;
     }
+    .ribbon-teaser-button-head { font-size: 5vw; }
 }
 /* Medium screens */
 @media only screen and (min-width: 40.063em) {
