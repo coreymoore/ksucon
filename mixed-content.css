@@ -325,6 +325,9 @@ h3.social-header {
     body[class*=node-type-academic-group] .paragraphs-item-blank-wysiwyg :first-of-type .field-name-field-body {
         margin-top: 0!important;
     }
+    .ctaFactoid .ctas a, .ctaFactoid.ctas a, .menucta .ctas a, .menucta.ctas a {
+        font-size: 7vw;
+    }
 }
 /* Medium screens */
 @media only screen and (min-width: 40.063em) {
