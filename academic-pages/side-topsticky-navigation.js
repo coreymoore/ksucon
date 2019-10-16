@@ -162,7 +162,7 @@ jQuery(document).ready(function($){
         
         // Once the sidebar is outside of the viewport
         if(!$('.sidebar').is(':in-viewport')){
-            if(window.scrollY > $bodyColHeight){
+            if(window.scrollY - 100 > $bodyColHeight){
                 $(rfi).css({
                     'position': 'absolute',
                     'top': 200 + $('.body').height() - $(rfi).height() - $('.sidebar').height()
