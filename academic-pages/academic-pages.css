@@ -1,5 +1,5 @@
-.stickymenu { position: initial!important; }
-.side-navigation a { text-decoration: none!important; }
+    .stickymenu { position: initial!important; }
+    .side-navigation a { text-decoration: none!important; }
     .side-navigation.unsticky.non-mobile a {
         background-color: #C9D0D2;
         margin: 0.5em 0;
@@ -32,7 +32,7 @@
         background-color: #586163;
         transition: 200ms ease-in;
     }
-.side-navigation {
+    .side-navigation {
         z-index: 999999;
     }
     .side-navigation li a {
@@ -198,6 +198,7 @@
         }
         .pane-node-title { margin-top: 1em; }
         #cta-buttons {
+            display: none;
             background: #EAAB00;
             border-top: 5px solid #002664;
             width: 100%;
@@ -312,3 +313,15 @@
     }
 
     .large-centered { position: relative; }
+    .bottom-stick-rfi {
+      position: absolute;
+      bottom: 25px;
+    }
+    .floating-rfi {
+        animation-duration: 2s;
+        position: fixed;
+        top: 50px;
+    }
+    .default-rfi {
+        position: relative;
+    }
