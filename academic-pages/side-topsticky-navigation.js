@@ -101,7 +101,7 @@ jQuery(document).ready(function ($) {
     var hheight;
     var sidebar = $('.sidebar');
     var sidebarWidth;
-    var footer = $('#node-860686');
+    var footer = $('#bottom-cta');
     var bodyDiv = $('.body');
     var navbarWidth;
     var navbarNav = $('.navbar-nav');
