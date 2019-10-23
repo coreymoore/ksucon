@@ -236,18 +236,20 @@ jQuery(document).ready(function ($) {
     }
 
     // Floating RFI Fix for when FAQ accordions are clicked
-    $('#faq dd.accordion-navigation a').on('click', function () {
-        if (rfiIsAttchSidebar === true) {
-            repositionRFIForm();
-            rfiIsAttchBody = true;
-            rfiIsAttchSidebar = false;
-        }
-        if (rfiIsAttchBody === true) {
-            repositionRFIForm();
-            rfiIsAttchBody = false;
-            rfiIsAttchSidebar = true;
-        }
-    });
+    if(!mobile){
+        $('#faq dd.accordion-navigation a').on('click', function () {
+            if (rfiIsAttchSidebar === true) {
+                repositionRFIForm();
+                rfiIsAttchBody = true;
+                rfiIsAttchSidebar = false;
+            }
+            if (rfiIsAttchBody === true) {
+                repositionRFIForm();
+                rfiIsAttchBody = false;
+                rfiIsAttchSidebar = true;
+            }
+        });
+    }    
 
     // This logic needs fixed later - the RFI form will float under the footer if the space between the top of the viewport and the footer is less than the height of the RFI form
     function repositionRFIForm() {
