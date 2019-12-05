@@ -1,3 +1,24 @@
+* { 
+    padding: 0;
+}
+div[data-gjs-type=mj-section] {
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    font-size:13px;
+    color:#505053;
+    line-height: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+div[data-gjs-type=mj-section] div {
+    background-color: #fff;
+}
+div[data-gjs-type=mj-column] {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+}
 img {
     width: initial!important;
     max-width: 100%!important;
@@ -141,6 +162,7 @@ table, td {
 
 html, body { 
     background-color: #dadadb;
+    font-family: 'Arial', sans-serif;
 }
 a { color: grey; }
 a.read-more {
@@ -195,4 +217,4 @@ p.email-actions a:hover {
     .ksuheader img, #cv-poweredBy img {
         width: initial!important;
     }
-}        
+}
