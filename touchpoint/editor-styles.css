@@ -1,0 +1,198 @@
+img { 
+    width: initial!important;
+    max-width: 100%!important;
+}
+td { padding: 0; }
+p, h1, h2, h3, h4, h5, td, small, span, div, li, a {
+    font-family: "Arial", sans-serif;
+}      
+h3 {
+    text-transform: none;
+    font-weight: bold;
+}
+small {
+    font-size: 9px;
+}
+a {
+    font-weight: bold;
+    color: #003976;
+    text-decoration: underline solid #0FBDDF;
+    -webkit-text-decoration: underline solid #0FBDDF;
+}
+a u {
+    text-underline: #0FBDDF;
+    text-underline-width: 1pt;
+    text-decoration: underline solid #0FBDDF;
+    -webkit-text-decoration: underline solid #0FBDDF;
+}
+a.read-more {
+    text-decoration: none!important; 
+    color:#4452A3!important;
+    font-weight: bold!important;
+}
+a.read-more u {
+    text-decoration: none!important;
+}
+a.read-more .arrowone {
+    color: #F7DDA6; letter-spacing: -2px;
+    font-size: 20px;
+    line-height: 0;
+}
+a.read-more .arrowtwo {
+    color: #F1C464; letter-spacing: -2px;
+    font-size: 20px;
+    line-height: 0;
+}
+a.read-more .arrowthree {
+    color: #EBAB21;
+    letter-spacing: -2px;
+    font-size: 20px;
+    line-height: 0;
+}
+p.email-actions {
+    font-size: 10.5px;
+}
+p.email-actions a {
+    color: #6A6A6C;
+    text-decoration: none;
+}
+h2, h3 {
+    font-weight: 600;
+    font-size: 16px;
+    color: #003976;
+    letter-spacing: -0.25px;
+    margin: 20px 0 10px 0;
+}
+h3 { font-size: 16px!important; }
+h2.top-headline {
+    font-size: 22px!important;
+    line-height: 28px;
+}
+.short-top-margin{
+    margin: 10px 0 10px 0;
+}
+.access-header {
+    margin: 0 0 0 0;
+}
+.award-recognition {
+    font-family: 'Arial', sans-serif; font-weight: 600; margin: 10px 0 0px 0; text-transform: uppercase; letter-spacing: 0.2px; font-size: 12px!important; color: #59595C;
+}
+h3 {
+    font-size: 13px;
+    margin: 10px 0;
+}
+p.byline {
+    font-size: 11px;
+    margin: 0 0 7px 0;
+    Margin: 0 0 7px 0;
+    color: #47474A;
+    line-height: 14px;
+    font-style: normal;
+}
+
+.intro {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: -0.25px;
+}
+.source {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 9px;
+    color: #505053;
+}
+p.mag-intro {
+    font-size: 10px;
+    color: #59595C;
+    margin: 5px 0 0 0;
+    Margin: 5px 0 0 0;
+    line-height: 14px;
+}
+p.mag-intro a {
+    color: #59595C; 
+    text-decoration: underline solid #59595C!important;
+    -webkit-text-decoration: underline solid #59595C!important;
+}
+ul {
+    padding: 0 0 0 18px;
+    margin: 0;
+    Margin: 0;
+}
+
+li {
+    color: #EBAB21;
+    margin: 7px 0;
+    Margin: 7px 0;
+}
+
+.footer-address a {
+    color: #FFFFFF;
+    text-decoration: underline dotted #FFFFFF;
+    -webkit-text-decoration: underline dotted #FFFFFF!important;
+}
+table, td {
+    font-family: 'Arial', sans-serif!important;
+}
+.research-callout {
+    border: 1px solid #4452A3;
+}
+.dh { font-size: 0; line-height: 0; color: white; }
+
+html, body { 
+    background-color: #dadadb;
+}
+a { color: grey; }
+a.read-more {
+    text-decoration: none!important; 
+    color:#4452A3!important;
+    font-weight: bold!important;
+}
+a.read-more u {
+    text-decoration: none!important;
+}
+a:hover {
+    color: #1A4D84 !important;
+}
+p.mag-intro a:hover {
+    color: #7A7A7D!important; 
+}
+a.read-more:hover{
+    color: #5763AC!important;
+    text-decoration: none!important;
+}
+a.read-more:hover .arrowone {
+    color: #F9E6BC!important;
+}
+a.read-more:hover .arrowtwo {
+    color: #F5D590!important;
+}
+a.read-more:hover .arrowthree {
+    color: #F1C464!important;
+}
+p.email-actions a:hover {
+    color: #8B8B8D !important;
+    text-decoration: none !important;
+}
+.footer-address a:hover {
+    color: #EEEEEF !important;
+    text-decoration: underline dotted #EEEEEF !important;
+}
+.dropcap { 
+    padding: 1px 5px 0 0;
+    font-size: 70px;
+}
+#cv-poweredBy { text-align: center!important; padding: 1em 0; font-size: 10px; background-color: #dadadb; }
+#cv-poweredBy a { color: grey; }
+.hide-on-mobile { display: none !important;}
+@media only screen and (min-width: 480px) { .hide-on-mobile { display: block !important;} }
+
+
+@media screen and (-moz-device-pixel-ratio){
+    img {
+        width: 100%!important;
+    }
+    .ksuheader img, #cv-poweredBy img {
+        width: initial!important;
+    }
+}        
