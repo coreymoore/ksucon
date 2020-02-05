@@ -383,7 +383,7 @@ jQuery(document).ready(function ($) {
      */
     // Create modal div, but do not display it
     if (!mobile) {
-        var modalBody = '<div aria-labelledby="rfiModalInner" class="reveal-modal tiny" data-reveal="" id="rfiModal" role="article" tabindex="-1" style="display: none;"><div id="rfiModalInner"></div></div>';
+        var modalBody = '<div class="reveal-modal tiny" data-reveal="" id="rfiModal" role="dialog" aria-modal="true" tabindex="-1" style="display: none;"><div id="rfiModalInner"></div></div>';
         $('body').append(modalBody);
         var dialogOpen = false;
 
@@ -396,22 +396,30 @@ jQuery(document).ready(function ($) {
                     'left': '',
                 });
                 $('#rfiModalInner').html(rfi).prepend('<a aria-label="Close" class="close-reveal-modal" role="button" tabindex="0">×</a>');
-                $("#rfiModal").foundation('reveal', 'open').focus();
+                $("#rfiModal").attr('triggerSrc', this.id).foundation('reveal', 'open').focus();
             }
         });
+        $('body').on('keypress', '.close-reveal-modal', function(e) {
+              if (e.which === 13 || e.keyCode === 13 || e.key === "Enter") {
+                $("#rfiModal").foundation('reveal', 'close');
+              }
+        });
+        $(document).on('open.fndtn.', '[data-reveal]', function (e) {
+            $('#nursing_degree_types-e685c9ec-783b-4047-90cd-5543fdfeafc8').focus();
+        });
         $(document).on('opened.fndtn.', '[data-reveal]', function () {
-            $('#rfiModal').focus();
-            $('#rfiModalInner .hs_nursing_degree_types').focus();
+            $('#nursing_degree_types-e685c9ec-783b-4047-90cd-5543fdfeafc8').focus();
         });
         $(document).on('close.fndtn.', '[data-reveal]', function () {
             $(rfi).detach().insertAfter($('.side-navigation').parents('.pane-node'));
             $('#rfiModalInner').html("");
             dialogOpen = false;
         });
-        $("a.close-reveal-modal").keypress(function (e) {
-            if (e.which == 13) {
-                $("#rfiModal").foundation('reveal', 'close');
-            }
+        $(document).on('closed.fndtn.', '[data-reveal]', function () {
+            var triggerSrc = '#' + $('#rfiModal').attr('triggerSrc');
+            $(triggerSrc).focus();
+            $('#rfiModal').attr('triggerSrc', '');
+            dialogOpen = false;
         });
         document.addEventListener("focus", function (event) {
             var dialog = document.getElementById("rfiModal");
