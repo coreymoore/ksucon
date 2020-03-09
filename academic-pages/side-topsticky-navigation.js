@@ -8,11 +8,13 @@ jQuery(document).ready(function ($) {
     // Remove the panel-seperator divs
     $('.panel-separator').remove();
     // Define the parent pane based on if the user is logged in (to account for page structural differences with Panels in Place editor)
+    var paneClass;
     if ($('body').hasClass('logged-in')) {
-        var pane = $('.body .panels-ipe-portlet-wrapper');
+        paneClass = '.panels-ipe-portlet-wrapper';
     } else {
-        var pane = $('.body .panel-pane');
+        paneClass = '.panel-pane';
     }
+    var pane = $('.body').find(paneClass);
     // Loop through each pane
     pane.each(function () {
         // Identify if the pane includes a section header (title)
@@ -46,7 +48,15 @@ jQuery(document).ready(function ($) {
     // Create an empty array to store the page navigation links
     var navLinksArr = [];
     // Get the RFI form
-    var rfi = $('#node-656226');
+    var rfi;
+    if($(".gradRequestInfoForm")[0]){
+      // Grad pages
+      rfi = $(".gradRequestInfoForm").parents(paneClass);
+    }
+    if($("#request-information")[0]){
+      // Undergrad pages
+      var rfi = $("#request-information").parents(paneClass);
+    }
     // Make an empty placeholder for the RFI
     var rfiPlaceholder = document.createElement('div');
     rfiPlaceholder.setAttribute('id', 'rfi-placeholder');
@@ -218,7 +228,7 @@ jQuery(document).ready(function ($) {
                 }
                 // Also, prepend the rfiPlaceholder to the sidebar and set it to the same height as the RFI form was in its original position
                 if (isRfiPlaceholder === false) {
-                    $(rfiPlaceholder).insertAfter(sideNav.parents('.pane-node'));
+                    $(rfiPlaceholder).insertAfter(sideNav.parents(paneClass));
                     $('#rfi-placeholder').css('height', rfiHeight);
                     isRfiPlaceholder = true;
                 }
@@ -229,9 +239,9 @@ jQuery(document).ready(function ($) {
             $('#rfi-placeholder').replaceWith(rfi);
             isRfiPlaceholder = false;
         }
-        // Close RFI modal if it exits viewport
-        if (!$('#rfiModal').is(':in-viewport')) {
-            $('#rfiModal').foundation('reveal', 'close');
+        // Close action modal if it exits viewport
+        if (!$('#actionModal').is(':in-viewport')) {
+            $('#actionModal').foundation('reveal', 'close');
         }
     }
 
@@ -370,7 +380,7 @@ jQuery(document).ready(function ($) {
             }, 750);
         }
     });
-
+  
     /**
      * Change all uppercase instances of Ph.D. in headers to capital case
      */
@@ -379,50 +389,87 @@ jQuery(document).ready(function ($) {
     });
 
     /**
-     * Request Information modal
+     * Action modal
      */
+    var infoForum = $('#info-forum').parents(paneClass);
+    var applyModal = $('#apply-modal');
+    function populateModal(triggerSrc, content, dialogOpen){
+      if (dialogOpen === false) {
+        dialogOpen = true;
+        if(content === rfi){
+            $(rfi).removeClass('floating-rfi bottom-stick-rfi').addClass('default-rfi').css({
+              'left': '',
+            });
+        }
+        if(content === applyModal){
+          $('.reveal-modal').removeClass('tiny');
+          $(applyModal).css('display', 'block');
+        }
+        $('#actionModalInner').html(content).prepend('<a aria-label="Close" class="close-reveal-modal" role="button" tabindex="0">×</a>');
+        $("#actionModal").attr('triggerSrc', triggerSrc).foundation('reveal', 'open').focus();
+        return;
+      }
+    }
+  
     // Create modal div, but do not display it
     if (!mobile) {
-        var modalBody = '<div class="reveal-modal tiny" data-reveal="" id="rfiModal" role="dialog" aria-modal="true" tabindex="-1" style="display: none;"><div id="rfiModalInner"></div></div>';
+        var modalBody = '<div class="reveal-modal tiny" data-reveal="" id="actionModal" role="dialog" aria-modal="true" tabindex="-1" style="display: none;"><div id="actionModalInner"></div></div>';
         $('body').append(modalBody);
         var dialogOpen = false;
 
-        // When the RFI button is clicked
+        // When the action buttons are clicked
         $('.rfi-button').click(function (e) {
             e.preventDefault();
-            if (dialogOpen == false) {
-                dialogOpen = true;
-                $('#node-656226').removeClass('floating-rfi bottom-stick-rfi').addClass('default-rfi').css({
-                    'left': '',
-                });
-                $('#rfiModalInner').html(rfi).prepend('<a aria-label="Close" class="close-reveal-modal" role="button" tabindex="0">×</a>');
-                $("#rfiModal").attr('triggerSrc', this.id).foundation('reveal', 'open').focus();
+            populateModal(this.id, rfi, dialogOpen);
+            dialogOpen = true;
+        });
+        $('.webinar-button').click(function (e) {
+            e.preventDefault();
+            populateModal(this.id, infoForum, dialogOpen);
+            dialogOpen = true;
+        });
+        $('.apply').click(function (e) {
+            if(applyModal.length > 0){
+               e.preventDefault();
+              populateModal(this.id, applyModal, dialogOpen);
+              dialogOpen = true;
             }
         });
-        $('body').on('keypress', '.close-reveal-modal', function(e) {
-              if (e.which === 13 || e.keyCode === 13 || e.key === "Enter") {
-                $("#rfiModal").foundation('reveal', 'close');
+        
+        $('body').on('keypress', '[role="button"]', function(e) {
+              if (e.which === 13 || e.keyCode === 13 || e.which === 32 || e.keycode === 32 || e.key === "Enter" || e.code === 'Space') {
+                $(this).click();
               }
         });
-        $(document).on('open.fndtn.', '[data-reveal]', function (e) {
-            $('#nursing_degree_types-e685c9ec-783b-4047-90cd-5543fdfeafc8').focus();
-        });
         $(document).on('opened.fndtn.', '[data-reveal]', function () {
-            $('#nursing_degree_types-e685c9ec-783b-4047-90cd-5543fdfeafc8').focus();
+            if($('#actionModalInner').has('input').length > 0){
+              $('#actionModalInner input').first().focus();
+            } else {
+              $('#actionModalInner h2').attr('tabindex', '0').focus();
+            }
         });
         $(document).on('close.fndtn.', '[data-reveal]', function () {
-            $(rfi).detach().insertAfter($('.side-navigation').parents('.pane-node'));
-            $('#rfiModalInner').html("");
+            var content = $('#actionModalInner').children().eq(1);
+            if(content[0] == rfi[0]){
+              $(content).detach().insertAfter($('.side-navigation').parents(paneClass));
+            } else if(content[0] == applyModal[0]){
+              $(content).detach().appendTo($('.footer-pane')).css('display', 'none');
+              $('.reveal-modal').addClass('tiny');
+            } else {
+              $('#actionModalInner h2').attr('tabindex', '');
+              $(content).detach().appendTo($('.sidebar'));
+            }            
+            $('#actionModalInner').html("");
             dialogOpen = false;
         });
         $(document).on('closed.fndtn.', '[data-reveal]', function () {
-            var triggerSrc = '#' + $('#rfiModal').attr('triggerSrc');
+            var triggerSrc = '#' + $('#actionModal').attr('triggerSrc');
             $(triggerSrc).focus();
-            $('#rfiModal').attr('triggerSrc', '');
+            $('#actionModal').attr('triggerSrc', '');
             dialogOpen = false;
         });
         document.addEventListener("focus", function (event) {
-            var dialog = document.getElementById("rfiModal");
+            var dialog = document.getElementById("actionModal");
             if (dialogOpen && !dialog.contains(event.target)) {
                 event.stopPropagation();
                 dialog.focus();
