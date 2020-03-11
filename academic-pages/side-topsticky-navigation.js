@@ -442,8 +442,8 @@ jQuery(document).ready(function ($) {
               }
         });
         $(document).on('opened.fndtn.', '[data-reveal]', function () {
-            if($('#actionModalInner').has('input').length > 0){
-              $('#actionModalInner input').first().focus();
+            if($('#actionModalInner').has(':input').length > 0){
+              $('#actionModalInner :input').first().focus();
             } else {
               $('#actionModalInner h2').attr('tabindex', '0').focus();
             }
@@ -476,4 +476,5 @@ jQuery(document).ready(function ($) {
             }
         }, true);
     }
+    
 });
